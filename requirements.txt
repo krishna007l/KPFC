@@ -1,6 +1,5 @@
 Flask==2.3.3
-pyrebase4==4.8.1
-
+pyrebase4==4.9.0
 requests==2.31.0
 python-jwt==3.3.4
 gcloud==0.18.3
