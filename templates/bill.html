@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../static/bill.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill</title>
+</head>
+<body>
+    <div class="bill-container">
+        <header>
+            <h1>KPFC</h1>
+            <div class="bill-info">
+                <p><strong>Date:</strong> {{ current_time }}</p> 
+            </div>
+            <a href="/home" class="home-button">Home</a>  <!-- Added Home button -->
+        </header>
+        
+        
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Food</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in pro %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>${{item.price}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="totals">
+            <p><strong>Subtotal:</strong> ${{totalprice }}</p>
+            <p><strong>Tax (10%):</strong> ${{tax}}</p>
+            <p><strong>Charge (7%):</strong> ${{charge}}</p>
+            <p><strong>Total:</strong> ${{final_total}}</p>
+        </div>
+        
+        <footer>
+            <p>Thank you for your business!</p>
+        </footer>
+    </div>
+</body>
+</html>

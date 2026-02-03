@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Food Store</title>
+<link rel="stylesheet" href="../static/home.css">
+</head>
+
+<body>
+<a href="/logout">
+    <button>Logout</button>
+</a>
+
+<div class="topbar">
+    <button class="box" onclick="window.location.href='addcard'">🛒 Cart</button>
+</div>
+
+<h2>🍔 Popular Foods</h2>
+
+<div class="products">
+
+{% for p in products %}
+<div class="box">
+    <img src="{{ p.image }}">
+    <h3>{{ p.name }}</h3>
+    <p class="price">₹ {{ p.price }}</p>
+
+    <form action="{{ url_for('addcard') }}" method="post">
+        <input type="hidden" name="product_image" value="{{p.image}}">
+        <input type="hidden" name="product_price" value="{{p.price}}">
+        <input type="hidden" name="product_name" value="{{p.name}}">
+        <input type="hidden" name="product_id" value="{{p.id}}">
+        <button type="submit">Add to Cart</button>
+    </form>
+</div>
+{% endfor %}
+
+</div>
+
+</body>
+</html>

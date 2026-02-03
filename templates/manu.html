@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f8f8;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #8b4513;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #ffcc66;
+        }
+        
+        .menu-category {
+            margin-bottom: 30px;
+        }
+        
+        .category-title {
+            background-color: #8b4513;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .item-price {
+            color: #8b4513;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        
+        .special {
+            color: #d2691e;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            .menu-item {
+                flex-direction: column;
+            }
+            
+            .item-price {
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RESTAURANT MENU</h1>
+        
+        <div class="menu-category">
+            <div class="category-title">APPETIZERS</div>
+            <div class="menu-item">
+                <span class="item-name">Bruschetta</span>
+                <span class="item-price">$8.50</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name">French Onion Soup</span>
+                <span class="item-price">$7.50</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name">Seared Scallops</span>
+                <span class="item-price special">$12.00</span>
+            </div>
+        </div>
+        
+        <div class="menu-category">
+            <div class="category-title">MAIN COURSES</div>
+            <div class="menu-item">
+                <span class="item-name">Australian Wagyu Steak</span>
+                <span class="item-price special">$45.00</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name">Grilled Salmon</span>
+                <span class="item-price">$22.50</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name">Mushroom Risotto</span>
+                <span class="item-price">$18.00</span>
+            </div>
+        </div>
+        
+        <div class="menu-category">
+            <div class="category-title">DESSERTS</div>
+            <div class="menu-item">
+                <span class="item-name">Chocolate Lava Cake</span>
+                <span class="item-price">$9.00</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name">Crème Brûlée</span>
+                <span class="item-price">$8.00</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name">Fresh Fruit Platter</span>
+                <span class="item-price">$7.00</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
