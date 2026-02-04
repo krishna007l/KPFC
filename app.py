@@ -60,24 +60,36 @@ def home():
     if 'user_name' not in session:
         return redirect('/login')
     return render_template("home.html", products = common.products)
-
 @app.route('/addcard', methods=['GET', 'POST'])
 def addcard():
 
     if request.method == 'POST':
-        id = request.form['product_id']
+        id = int(request.form['product_id'])
         name = request.form['product_name']
         image = request.form['product_image']
-        price = request.form['product_price']
+        price = int(request.form['product_price'])
+        qun = int(request.form['quantity'])
 
+        for i, x in zip(common.productadd, common.products):
+            if i['id'] == id:
+                i['qty'] = qun
+                x['quantity'] = i['qty']
+                return redirect('/addcard')
+            
+            
         common.productadd.append({
             "id": id,
             "name": name,
             "price": price,
-            "image": image
+            "image": image,
+            "qty": qun
         })
+        
+            
+        return redirect('/addcard')
 
     return render_template("add.html", product=common.productadd)
+
 
 @app.route('/remove/<int:pid>')
 def remove_item(pid):
@@ -92,7 +104,8 @@ def remove_item(pid):
 @app.route('/bill')
 def bill():
     current_time = datetime.now()
-    total_price = sum(float(product['price']) for product in common.productadd)
+    total_price = sum(item['price'] * item['qty'] for item in common.productadd)
+
     tax = total_price * 0.1
     charge = total_price * 0.07
     final_total = total_price + tax + charge
@@ -107,6 +120,30 @@ def bill():
         final_total = final_total
         )
 
+@app.route('/increase/<pid>')
+def increase_qty(pid):
+
+    for i in common.productadd:
+        if i['id'] == int(pid):
+            i['qty'] = i['qty'] + 1
+            print(common.productadd)
+            break
+
+    return redirect('/addcard')
+
+@app.route('/decrease/<pid>')
+def decrease_qty(pid):
+
+    for i in common.productadd:
+        if i['id'] == int(pid):
+            i['qty'] -= 1
+            if i['qty'] <= 0:
+                common.productadd.remove(i)
+                print(common.productadd)
+            break
+
+    return redirect('/addcard')
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True) 

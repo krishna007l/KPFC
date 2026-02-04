@@ -191,3 +191,50 @@ body {
         margin: 0 10px;
     }
 }
+
+.qty-btns a{
+    padding:5px 10px;
+    background:#000000;
+    color:white;
+    text-decoration:none;
+    margin:0 5px;
+    border-radius:4px;
+}
+
+.qty-btns span{
+    font-weight:bold;
+    font-size:18px;
+}
+form{
+    margin-top:10px;
+}
+
+label{
+    font-weight:bold;
+    margin-right:6px;
+}
+
+input[type="number"]{
+    width:60px;
+    padding:6px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    text-align:center;
+    font-size:15px;
+}
+
+button{
+    margin-left:8px;
+    padding:7px 14px;
+    background:#ffffff;
+    border:none;
+    color:white;
+    font-size:14px;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#e68900;
+}

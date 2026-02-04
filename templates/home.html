@@ -25,6 +25,8 @@
     <p class="price">₹ {{ p.price }}</p>
 
     <form action="{{ url_for('addcard') }}" method="post">
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" value="{{p.quantity}}">
         <input type="hidden" name="product_image" value="{{p.image}}">
         <input type="hidden" name="product_price" value="{{p.price}}">
         <input type="hidden" name="product_name" value="{{p.name}}">

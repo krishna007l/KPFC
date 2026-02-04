@@ -17,22 +17,27 @@
         </header>
         
         
-        <table class="items-table">
-            <thead>
-                <tr>
-                    <th>Food</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in pro %}
-                <tr>
-                    <td>{{ item.name }}</td>
-                    <td>${{item.price}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <<table class="items-table">
+    <thead>
+        <tr>
+            <th>Food</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in pro %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>₹ {{ item.price }}</td>
+            <td>{{ item.qty }}</td>
+            <td>₹ {{ item.price * item.qty }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
         
         <div class="totals">
             <p><strong>Subtotal:</strong> ${{totalprice }}</p>

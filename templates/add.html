@@ -21,8 +21,17 @@
     <img src="{{ p.image }}">
     <div class="content">
         <h3>{{ p.name }}</h3>
-        <p class="price">₹ {{ p.price }}</p>
+        <p class="price">Price: ₹ {{ p.price }}</p>
+        <p class="price">Qty: {{ p.qty }}</p>
+        <p class="price">Total: ₹ {{ p.price * p.qty }}</p>
 
+
+        <div class="qty-btns">
+        <a href="/decrease/{{ p.id }}">-</a>
+        <span>{{ p.qty }}</span>
+        <a href="/increase/{{ p.id }}">+</a>
+        </div>
+    
         <a href="/remove/{{ p.id }}" >
             <button>Remove</button>
         </a>
