@@ -1,49 +1,190 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Food Store</title>
-<link rel="stylesheet" href="../static/add.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Krishna Patel Food Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/add.css">
 </head>
-
 <body>
-
-<div class="topbar">
-    <h1>🍽 Food Store</h1>
-    <button onclick="window.location.href='home'">Home</button>
-</div>
-
-<h2 class="title">🔥 Popular Foods</h2>
-
-<div class="products">
-
-{% for p in product %}
-<div class="box">
-    <img src="{{ p.image }}">
-    <div class="content">
-        <h3>{{ p.name }}</h3>
-        <p class="price">Price: ₹ {{ p.price }}</p>
-        <p class="price">Qty: {{ p.qty }}</p>
-        <p class="price">Total: ₹ {{ p.price * p.qty }}</p>
-
-
-        <div class="qty-btns">
-        <a href="/decrease/{{ p.id }}">-</a>
-        <span>{{ p.qty }}</span>
-        <a href="/increase/{{ p.id }}">+</a>
+    <!-- Header -->
+    <div class="cart-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="window.location.href='/home'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="header-title">
+                <h1>Your Cart</h1>
+                <p class="restaurant-name">Krishna Patel Food Center(KPFC)</p>
+            </div>
+            <div class="header-actions">
+                <button class="clear-cart-btn" onclick="window.location.href='/home'">
+                    <i class="fas fa-plus"></i>
+                    Add More
+                </button>
+            </div>
         </div>
-    
-        <a href="/remove/{{ p.id }}" >
-            <button>Remove</button>
-        </a>
-
     </div>
-</div>
-{% endfor %}
 
-</div>
-<div class="order-box">
-    <button  class="order-btn" onclick="window.location.href='bill'">place order</button>
-</div>
+    <!-- Main Content -->
+    <main class="cart-container">
+        {% if product %}
+        <!-- Cart Items Section -->
+        <div class="cart-items-section">
+            <div class="section-header">
+                <h2><i class="fas fa-shopping-basket"></i> Cart Items </h2>
+            </div>
+            
+            <div class="items-list">
+                {% for p in product %}
+                <div class="cart-item" data-id="{{ p.id }}">
+                    <div class="item-image">
+                        <img src="{{ p.image }}" alt="{{ p.name }}">
+                    </div>
+                    
+                    <div class="item-details">
+                        <h3 class="item-name">{{ p.name }}</h3>
+                        
+                        <div class="item-price-row">
+                            <div class="price-info">
+                                <span class="item-price">₹{{ p.price * p.qty }}</span>
+                                {% if p.qty > 1 %}
+                                <span class="unit-price">₹{{ p.price }} per item</span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="item-actions">
+                                <div class="quantity-controls">
+                                    <a href="/decrease/{{ p.id }}" class="qty-btn qty-minus">
+                                        <i class="fas fa-minus"></i>
+                                    </a>
+                                    <span class="qty-display">{{ p.qty }}</span>
+                                    <a href="/increase/{{ p.id }}" class="qty-btn qty-plus">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                </div>
+                                
+                                <a href="/remove/{{ p.id }}" class="remove-btn">
+                                    <i class="fas fa-trash"></i>
+                                    Remove
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
 
+        <!-- Bill Details Section -->
+        <div class="bill-section">
+            <div class="section-header">
+                <h2><i class="fas fa-receipt"></i> BILL </h2>
+            </div>
+            
+            <div class="bill-card">
+                <div class="bill-row">
+                    <span>TOTAL PRICE OF ITEM</span>
+                    <span>₹{{ total }}</span>
+                </div>
+                
+                <div class="bill-row">
+                    <span>DELIVERY CHARGE</span>
+                    <span class="free">FREE</span>
+                </div>
+                
+                <div class="bill-row discount-row">
+                    <span>
+                        <i class="fas fa-tag"></i>
+                        RESTAURANT OFFER
+                    </span>
+                    <span class="discount">-₹{{ (total * 0.1)|int }}</span>
+                </div>
+                
+                <div class="bill-row tax-row">
+                    <span>GST </span>
+                    <span>₹{{ (total * 0.05)|int }}</span>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="bill-row total-row">
+                    <span class="total-label">TOTAL PAY</span>
+                    <span class="total-amount">₹{{ total - (total * 0.1)|int + (total * 0.05)|int }}</span>
+                </div>
+            </div>
+            
+            <!-- Payment Method -->
+            <div class="payment-section">
+                <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                <div class="payment-options">
+                    <div class="payment-option selected">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Cash on Delivery</span>
+                        <i class="fas fa-check-circle check-icon"></i>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        {% else %}
+        <!-- Empty Cart State -->
+        <div class="empty-cart">
+            <div class="empty-icon">
+                <i class="fas fa-shopping-basket"></i>
+            </div>
+            <h2>Your cart is empty</h2>
+            <p>Add delicious food items to get started</p>
+            <button class="browse-btn" onclick="window.location.href='/home'">
+                <i class="fas fa-utensils"></i>
+                Browse Menu
+            </button>
+        </div>
+        {% endif %}
+    </main>
+
+    <!-- Footer - Checkout Button -->
+    {% if product %}
+    <footer class="checkout-footer">
+        <div class="footer-content">
+            <div class="total-info">
+                <span class="total-label">TOTAL</span>
+                <span class="total-price">₹{{ total - (total * 0.1)|int + (total * 0.05)|int }}</span>
+            </div>
+            <button class="checkout-btn" onclick="window.location.href='/bill'">
+                <i class="fas fa-bolt"></i>
+                PROCEED TO DELIVERY
+            </button>
+        </div>
+    </footer>
+    {% endif %}
+
+
+    <script>
+        // Animate quantity changes
+        document.querySelectorAll('.qty-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const qtyDisplay = this.parentElement.querySelector('.qty-display');
+                if (qtyDisplay) {
+                    qtyDisplay.classList.add('qty-pop');
+                    setTimeout(() => {
+                        qtyDisplay.classList.remove('qty-pop');
+                    }, 200);
+                }
+                showToast('Item quantity updated!');
+            });
+        });
+        
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.payment-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+    </script>
 </body>
 </html>

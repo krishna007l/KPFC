@@ -1,14 +1,11 @@
 import pyrebase
-
 import common 
-
 import firebase
 from datetime import datetime
 from collections import defaultdict
-from flask import Flask, render_template, request, redirect, url_for,session,make_response
+from flask import Flask, render_template, request, redirect, session
 
 app = Flask(__name__)
-
 app.secret_key = "KPTHEFOOD"
 
 firebase = pyrebase.initialize_app(firebase.config)
@@ -27,9 +24,9 @@ def login():
         try:
             session['user_name'] = e
             auth.sign_in_with_email_and_password(e, p)
-            return redirect('/home')
+            return redirect('/home') 
         except:
-            return redirect("/login")
+            return redirect("/login")  
             
     return render_template('login.html')
 
@@ -40,7 +37,7 @@ def manu():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect('/login')
+    return redirect('/login')  
 
 @app.route('/signup', methods=['GET','POST'])
 def signup():
@@ -50,7 +47,7 @@ def signup():
         p = request.form['password']
         try:
             auth.create_user_with_email_and_password(e, p)
-            return redirect('/login')
+            return redirect('/login') 
         except:
             msg = "Error creating account"
     return render_template('signup.html', msg=msg)
@@ -58,11 +55,24 @@ def signup():
 @app.route("/home")
 def home():
     if 'user_name' not in session:
-        return redirect('/login')
-    return render_template("home.html", products = common.products)
+        return redirect('/login')  
+    
+    total_quantity = 0
+    total_amount = 0
+    
+    for item in common.productadd:
+        total_quantity += item['qty']
+        total_amount += item['price'] * item['qty']
+    
+    return render_template(
+        "home.html", 
+        products=common.products,
+        quantity=total_quantity,
+        total=total_amount
+    )
+
 @app.route('/addcard', methods=['GET', 'POST'])
 def addcard():
-
     if request.method == 'POST':
         id = int(request.form['product_id'])
         name = request.form['product_name']
@@ -70,13 +80,12 @@ def addcard():
         price = int(request.form['product_price'])
         qun = int(request.form['quantity'])
 
-        for i, x in zip(common.productadd, common.products):
-            if i['id'] == id:
-                i['qty'] = qun
-                x['quantity'] = i['qty']
-                return redirect('/addcard')
-            
-            
+        for item in common.productadd:
+            if item['id'] == id:
+                item['qty'] = qun
+                return redirect('/home') 
+        
+        
         common.productadd.append({
             "id": id,
             "name": name,
@@ -85,21 +94,31 @@ def addcard():
             "qty": qun
         })
         
-            
-        return redirect('/addcard')
-
-    return render_template("add.html", product=common.productadd)
-
+        return redirect('/home') 
+    
+   
+    total_quantity = 0
+    total_amount = 0
+    
+    for item in common.productadd:
+        total_quantity += item['qty']
+        total_amount += item['price'] * item['qty']
+    
+    return render_template(
+        "add.html", 
+        product=common.productadd,
+        quantity=total_quantity,
+        total=total_amount
+    )
 
 @app.route('/remove/<int:pid>')
 def remove_item(pid):
-
     for item in common.productadd:
-        if str(item.get('id')) == str(pid):
+        if item['id'] == pid:
             common.productadd.remove(item)
-            return redirect('/addcard')
-
-    return redirect('/home')
+            return redirect('/addcard') 
+    
+    return redirect('/addcard')  
 
 @app.route('/bill')
 def bill():
@@ -113,37 +132,32 @@ def bill():
     return render_template(
         "bill.html", 
         pro=common.productadd,
-        totalprice = total_price ,
-        current_time = current_time,
-        tax = tax,
-        charge = charge,
-        final_total = final_total
-        )
+        totalprice=total_price,
+        current_time=current_time,
+        tax=tax,
+        charge=charge,
+        final_total=final_total
+    )
 
 @app.route('/increase/<pid>')
 def increase_qty(pid):
-
-    for i in common.productadd:
-        if i['id'] == int(pid):
-            i['qty'] = i['qty'] + 1
-            print(common.productadd)
+    for item in common.productadd:
+        if item['id'] == int(pid):
+            item['qty'] += 1
             break
-
-    return redirect('/addcard')
+    
+    return redirect('/addcard')  
 
 @app.route('/decrease/<pid>')
 def decrease_qty(pid):
-
-    for i in common.productadd:
-        if i['id'] == int(pid):
-            i['qty'] -= 1
-            if i['qty'] <= 0:
-                common.productadd.remove(i)
-                print(common.productadd)
+    for item in common.productadd:
+        if item['id'] == int(pid):
+            item['qty'] -= 1
+            if item['qty'] <= 0:
+                common.productadd.remove(item)
             break
-
-    return redirect('/addcard')
-
+    
+    return redirect('/addcard') 
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=True)

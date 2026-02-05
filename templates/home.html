@@ -1,42 +1,226 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Food Store</title>
-<link rel="stylesheet" href="../static/home.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishna Patel Food Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/home.css">
 </head>
-
 <body>
-<a href="/logout">
-    <button>Logout</button>
-</a>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h1 class="logo-text">KPFC</h1>
+            </div>
+            
+            <div class="nav-actions">
+                <a href="/logout" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+                
+                <button class="cart-btn" onclick="window.location.href='/addcard'">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-text">Cart</span>
+                </button>
+            </div>
+        </div>
 
-<div class="topbar">
-    <button class="box" onclick="window.location.href='addcard'">🛒 Cart</button>
-</div>
 
-<h2>🍔 Popular Foods</h2>
 
-<div class="products">
 
-{% for p in products %}
-<div class="box">
-    <img src="{{ p.image }}">
-    <h3>{{ p.name }}</h3>
-    <p class="price">₹ {{ p.price }}</p>
+    
+    
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Food Items Section -->
+        <section class="food-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-fire"></i>
+                    KPFC FOOD HOUSE
+                </h2>
+            </div>
 
-    <form action="{{ url_for('addcard') }}" method="post">
-        <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" id="quantity" value="{{p.quantity}}">
-        <input type="hidden" name="product_image" value="{{p.image}}">
-        <input type="hidden" name="product_price" value="{{p.price}}">
-        <input type="hidden" name="product_name" value="{{p.name}}">
-        <input type="hidden" name="product_id" value="{{p.id}}">
-        <button type="submit">Add to Cart</button>
-    </form>
-</div>
-{% endfor %}
+            <!-- Food Grid -->
+            <div class="food-grid">
+                {% for p in products %}
+                <div class="food-card" onclick="openItem('{{p.id}}', '{{p.name}}', '{{p.image}}', '{{p.price}}')">
+                    
+                    <div class="food-img-container">
+                        <img src="{{ p.image }}" alt="{{ p.name }}" class="food-img">
+                        <div class="rating-badge">
+                            <i class="fas fa-star"></i>
+                            {{p.rating}}
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <h3 class="food-name">{{ p.name }}</h3>
+                        <p class="food-desc">{{p.description}}</p>
+                        
+                        <div class="card-footer">
+                            <div class="price-info">
+                                <span class="price">₹{{ p.price }}</span>
+                            </div>
+                            <button class="add-btn" onclick="event.stopPropagation(); openItem('{{p.id}}', '{{p.name}}', '{{p.image}}', '{{p.price}}')">
+                                <i class="fas fa-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
 
-</div>
+    <!-- Floating Cart -->
+    <div class="floating-cart" onclick="window.location.href='/addcard'">
+        <div class="cart-info">
+            <i class="fas fa-shopping-bag"></i>
+            <div class="cart-details">
+                <span class="cart-items">{{ quantity }} items</span>
+                <span class="cart-total">₹{{ total }}</span>
+            </div>
+        </div>
+        <div class="view-cart">
+            View Cart
+            <i class="fas fa-arrow-right"></i>
+        </div>
+    </div>
 
+    <!-- Food Item Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-overlay" onclick="closeItem()"></div>
+        <div class="popup-container">
+            <div class="popup-header">
+                <button class="close-btn" onclick="closeItem()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="popup-content">
+                <div class="popup-img-container">
+                    <img id="pop-img" src="" alt="Food Item" class="popup-img">
+                    
+                </div>
+                
+                <div class="popup-details">
+                    <h2 id="pop-name" class="popup-title"></h2>
+                    <div class="popup-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        
+                    </div>
+                    
+                    
+                    <div class="popup-price-section">
+                        <div class="price-display">
+                            <span class="unit-price-label">Unit Price:</span>
+                            <span id="pop-price" class="unit-price"></span>
+                        </div>
+                        
+                        <div class="quantity-selector">
+                            <span class="quantity-label">Quantity:</span>
+                            <div class="qty-controls">
+                                <button type="button" class="qty-btn" onclick="dec()">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" id="qty" name="quantity" value="1" min="1" class="qty-input">
+                                <button type="button" class="qty-btn" onclick="inc()">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="total-section">
+                            <span class="total-label">Total Amount:</span>
+                            <span id="total" class="total-price"></span>
+                        </div>
+                    </div>
+                    
+                    <form action="/addcard" method="post" class="add-to-cart-form">
+                        <input type="hidden" name="product_id" id="f-id">
+                        <input type="hidden" name="product_name" id="f-name">
+                        <input type="hidden" name="product_image" id="f-img">
+                        <input type="hidden" name="product_price" id="f-price">
+                        <input type="hidden" name="quantity" id="f-quantity" value="1">
+                        
+                        <button type="submit" class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            ADD TO CART • ₹<span id="cart-total">0</span>
+                        </button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        let price = 0;
+        
+        function openItem(id, name, img, p) {
+            document.getElementById("popup").style.display = "flex";
+            document.getElementById("pop-name").innerText = name;
+            document.getElementById("pop-img").src = img;
+            document.getElementById("pop-price").innerText = '₹' + p;
+            
+            document.getElementById("f-id").value = id;
+            document.getElementById("f-name").value = name;
+            document.getElementById("f-img").value = img;
+            document.getElementById("f-price").value = p;
+            
+            price = parseInt(p);
+            document.getElementById("qty").value = 1;
+            document.getElementById("f-quantity").value = 1;
+            updateTotal();
+        }
+        
+        function closeItem() {
+            document.getElementById("popup").style.display = "none";
+        }
+        
+        function inc() {
+            let q = document.getElementById("qty");
+            q.value = parseInt(q.value) + 1;
+            updateTotal();
+        }
+        
+        function dec() {
+            let q = document.getElementById("qty");
+            if (q.value > 1) {
+                q.value--;
+                updateTotal();
+            }
+        }
+        
+        function updateTotal() {
+            let quantity = document.getElementById("qty").value;
+            let total = price * quantity;
+            document.getElementById("total").innerText = '₹' + total;
+            document.getElementById("cart-total").innerText = total;
+            document.getElementById("f-quantity").value = quantity;
+        }
+        
+        // Close popup when clicking outside
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.popup-overlay').addEventListener('click', closeItem);
+            
+            // Initialize total
+            updateTotal();
+        });
+    </script>
 </body>
 </html>

@@ -1,54 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../static/bill.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bill</title>
+    <title>Success</title>
+    <link rel="stylesheet" href="../static/bill.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="bill-container">
-        <header>
-            <h1>KPFC</h1>
-            <div class="bill-info">
-                <p><strong>Date:</strong> {{ current_time }}</p> 
-            </div>
-            <a href="/home" class="home-button">Home</a>  <!-- Added Home button -->
-        </header>
-        
-        
-        <<table class="items-table">
-    <thead>
-        <tr>
-            <th>Food</th>
-            <th>Price</th>
-            <th>Qty</th>
-            <th>Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in pro %}
-        <tr>
-            <td>{{ item.name }}</td>
-            <td>₹ {{ item.price }}</td>
-            <td>{{ item.qty }}</td>
-            <td>₹ {{ item.price * item.qty }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-        
-        <div class="totals">
-            <p><strong>Subtotal:</strong> ${{totalprice }}</p>
-            <p><strong>Tax (10%):</strong> ${{tax}}</p>
-            <p><strong>Charge (7%):</strong> ${{charge}}</p>
-            <p><strong>Total:</strong> ${{final_total}}</p>
+    <div class="success-box">
+        <div class="check-mark">
+            <i class="fas fa-check-circle"></i>
         </div>
-        
-        <footer>
-            <p>Thank you for your business!</p>
-        </footer>
+        <div class="success-text">Success!</div>
+        <div class="message">Delivery in map.</div>
+        <button class="home-btn" onclick="window.location.href='/home'">
+            <i class="fas fa-home"></i>
+            Go Home
+        </button>
     </div>
 </body>
 </html>

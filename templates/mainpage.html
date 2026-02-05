@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KP Food Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../static/main.css">
 </head>
 <body>
@@ -15,8 +16,14 @@
                 <span>KP Food Center</span>
             </div>
             <div class="nav-buttons">
-                <button class="btn login"  onclick="window.location.href='login'">Login</button>
-                <button class="btn signup"  onclick="window.location.href='signup'">Sign Up</button>
+                <button class="btn login" onclick="window.location.href='login'">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </button>
+                <button class="btn signup" onclick="window.location.href='signup'">
+                    <i class="fas fa-user-plus"></i>
+                    Sign Up
+                </button>
             </div>
         </div>
     </nav>
@@ -24,43 +31,245 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Welcome to KP Food Center</h1>
-            <p>Delicious food delivered fast to your door</p>
-            <p>this manu page seen after login </p>
-            <button onclick="window.location.href='manu'" class="menu-btn">View Menu</button>
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome to KP Food Center</h1>
+                <p class="hero-subtitle">Delicious food delivered fast to your door</p>
+                <p class="hero-description">Experience the best food delivery service with our wide range of menu options</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <h3>5000+</h3>
+                            <p>Happy Customers</p>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-utensils"></i>
+                        <div>
+                            <h3>200+</h3>
+                            <p>Menu Items</p>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-motorcycle"></i>
+                        <div>
+                            <h3>30 min</h3>
+                            <p>Avg. Delivery</p>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="window.location.href='manu'" class="menu-btn">
+                    <i class="fas fa-bars"></i>
+                    View Full Menu
+                </button>
+            </div>
+            <div class="hero-image">
+                <div class="food-image">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Delicious Food">
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features">
         <div class="container">
-            <h2>feature</h2>
+            <h2 class="section-title">Why Choose KP Food Center?</h2>
             <div class="features-grid">
-                <div class="feature">
-                    <i class="fas fa-shipping-fast"></i>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
                     <h3>Fast Delivery</h3>
-                    <p>Delivered within 30 minutes</p>
+                    <p>Delivered within 30 minutes guaranteed. Track your order in real-time.</p>
                 </div>
-                <div class="feature">
-                    <i class="fas fa-star"></i>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
                     <h3>Quality Food</h3>
-                    <p>Fresh ingredients, great taste</p>
+                    <p>Fresh ingredients, hygienic preparation, and authentic taste in every dish.</p>
                 </div>
-                <div class="feature">
-                    <i class="fas fa-tags"></i>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
                     <h3>Best Prices</h3>
-                    <p>Affordable and delicious</p>
+                    <p>Affordable prices with regular discounts and special offers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Safe Delivery</h3>
+                    <p>Contactless delivery and strict hygiene standards followed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Popular Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="window.location.href='manu'">
+                    <div class="category-icon">
+                        <i class="fas fa-pizza-slice"></i>
+                    </div>
+                    <h3>Pizzas</h3>
+                    <p>Freshly baked with delicious toppings</p>
+                </div>
+                <div class="category-card" onclick="window.location.href='manu'">
+                    <div class="category-icon">
+                        <i class="fas fa-hamburger"></i>
+                    </div>
+                    <h3>Burgers</h3>
+                    <p>Juicy burgers with special sauces</p>
+                </div>
+                <div class="category-card" onclick="window.location.href='manu'">
+                    <div class="category-icon">
+                        <i class="fas fa-drumstick-bite"></i>
+                    </div>
+                    <h3>Chicken</h3>
+                    <p>Spicy and crispy chicken dishes</p>
+                </div>
+                <div class="category-card" onclick="window.location.href='manu'">
+                    <div class="category-icon">
+                        <i class="fas fa-ice-cream"></i>
+                    </div>
+                    <h3>Desserts</h3>
+                    <p>Sweet treats to end your meal</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Customer">
+                        <div>
+                            <h4>Priya Sharma</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Best food delivery service! The pizza was fresh and delivered on time. Highly recommended!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Customer">
+                        <div>
+                            <h4>Raj Patel</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"The burgers are amazing! Fast delivery and great packaging. Will order again for sure!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Customer">
+                        <div>
+                            <h4>Anjali Mehta</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Love their desserts! The chocolate cake is heavenly. Service is prompt and professional."</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <p>© 2024 KP Food Center. krishna owener.</p>
-            <p>aji dem, bhavnagar road, rajkot | Phone: 90817832**</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-utensils"></i>
+                        <span>KP Food Center</span>
+                    </div>
+                    <p class="footer-text">Delivering happiness through delicious food since 2024.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="/">Home</a>
+                    <a href="manu">Menu</a>
+                    <a href="login">Login</a>
+                    <a href="signup">Sign Up</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Aji Dem, Bhavnagar Road, Rajkot</p>
+                    <p><i class="fas fa-phone"></i> +91 90817 832XX</p>
+                    <p><i class="fas fa-envelope"></i> kpfoodcenter@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 KP Food Center. All rights reserved. | Owner: Krishna Patel</p>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to category cards
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add animation to stats
+            const stats = document.querySelectorAll('.stat h3');
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target + '+';
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current) + '+';
+                    }
+                }, 30);
+            });
+        });
+    </script>
 </body>
 </html>

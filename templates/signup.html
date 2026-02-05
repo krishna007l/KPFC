@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - KP Food Center</title>
-    
+    <title>KP Food Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../static/login_singup.css">
 </head>
 <body>
@@ -21,40 +21,25 @@
     <div class="login-container">
         <div class="login-box">
             <h1>Create Account</h1>
-            <p>Join KP Food Center today</p>
-            
             <form class="login-form" method="POST">
                 <div class="input-group">
                     <i class="fas fa-user"></i>
                     <input type="text" placeholder="Full Name" required>
                 </div>
-                
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" placeholder="Email Address" required>
+                    <input name="email" type="email" placeholder="Email Address" required>
                 </div>
-                
-                
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Create Password" required>
+                    <input name="password" minlength="6" type="password" placeholder="Create Password" required>
                 </div>
-                
-                
-                <div class="terms">
-                    <input type="checkbox" id="terms" required>
-                    <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
-                </div>
-                
-                <button type="submit" class="btn signup-btn">Create Account</button>
+                <button type="submit" class="btn login-btn">Create Account</button>
             </form>
             
-            <div class="divider">
-                <span>or</span>
-            </div>
             
             
-            <div class="login-link">
+            <div class="signup-link">
                 Already have an account? 
                 <a href="/login">Login here</a>
             </div>

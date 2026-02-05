@@ -1,257 +1,490 @@
 /* login_singup.css - Login and Signup Pages */
+
+:root {
+    --swiggy-orange: #FC8019;
+    --swiggy-dark: #282C3F;
+    --swiggy-light: #686B78;
+    --swiggy-bg: #F8F8F8;
+    --swiggy-card: #FFFFFF;
+    --swiggy-border: #D4D5D9;
+    --swiggy-green: #60B246;
+    --swiggy-red: #FF6161;
+    --swiggy-blue: #2A8BF2;
+    --swiggy-yellow: #FFC107;
+    --swiggy-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --swiggy-shadow-heavy: 0 6px 18px rgba(0, 0, 0, 0.15);
+    --radius: 12px;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', 'Poppins', sans-serif;
 }
 
 body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-color: var(--swiggy-bg);
+    color: var(--swiggy-dark);
     min-height: 100vh;
-    color: #333;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Header */
+/* Header Styles for Login Page */
 .header {
-    background: white;
-    padding: 1.5rem 2rem;
+    background: var(--swiggy-card);
+    box-shadow: var(--swiggy-shadow);
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 15px;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #667eea;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--swiggy-orange);
 }
 
 .logo i {
-    font-size: 2rem;
-    color: #764ba2;
+    background: var(--swiggy-orange);
+    color: var(--swiggy-card);
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
 }
 
 .home-link {
-    color: #667eea;
+    color: var(--swiggy-dark);
     text-decoration: none;
     font-weight: 600;
-    transition: all 0.3s ease;
-    padding: 8px 15px;
-    border-radius: 20px;
-    border: 2px solid #667eea;
+    padding: 12px 24px;
+    border: 2px solid var(--swiggy-border);
+    border-radius: 8px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .home-link:hover {
-    background: #667eea;
-    color: white;
+    border-color: var(--swiggy-orange);
+    color: var(--swiggy-orange);
     transform: translateY(-2px);
 }
 
 /* Login Container */
 .login-container {
+    flex: 1;
     display: flex;
-    justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 140px);
-    padding: 30px 20px;
+    justify-content: center;
+    padding: 60px 20px;
+    animation: fadeIn 0.8s ease;
 }
 
 .login-box {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    background: var(--swiggy-card);
+    border-radius: 24px;
+    padding: 60px 50px;
     width: 100%;
-    max-width: 450px;
-    text-align: center;
+    max-width: 480px;
+    box-shadow: var(--swiggy-shadow-heavy);
+    border: 2px solid transparent;
+    transition: all 0.4s;
+}
+
+.login-box:hover {
+    border-color: var(--swiggy-orange);
+    transform: translateY(-5px);
 }
 
 .login-box h1 {
-    color: #2c3e50;
-    margin-bottom: 10px;
-    font-size: 2rem;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--swiggy-dark);
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
 }
 
-.login-box > p {
-    color: #7f8c8d;
-    margin-bottom: 30px;
-    font-size: 1rem;
+.login-box h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--swiggy-orange);
+    border-radius: 2px;
 }
 
-/* Form */
+/* Login Form */
 .login-form {
-    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .input-group {
     position: relative;
-    margin-bottom: 25px;
-}
-
-.input-group i {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #667eea;
-    font-size: 1.1rem;
 }
 
 .input-group input {
     width: 100%;
-    padding: 15px 15px 15px 45px;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    padding: 20px 25px;
+    font-size: 16px;
+    border: 2px solid var(--swiggy-border);
+    border-radius: 12px;
+    background: var(--swiggy-bg);
+    color: var(--swiggy-dark);
+    transition: all 0.3s;
+    outline: none;
 }
 
 .input-group input:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: var(--swiggy-orange);
+    background: var(--swiggy-card);
+    box-shadow: 0 0 0 3px rgba(252, 128, 25, 0.1);
 }
 
-/* Terms */
-.terms {
+.input-group input::placeholder {
+    color: var(--swiggy-light);
+}
+
+.input-group i {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--swiggy-light);
+    font-size: 18px;
+}
+
+/* Password Toggle Eye Icon */
+.password-toggle {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--swiggy-light);
+    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.password-toggle:hover {
+    color: var(--swiggy-orange);
+}
+
+/* Login Button */
+.btn {
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin: 20px 0;
-    font-size: 0.9rem;
-}
-
-.terms input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-}
-
-.terms a {
-    color: #667eea;
-    text-decoration: none;
-}
-
-.terms a:hover {
-    text-decoration: underline;
-}
-
-/* Buttons */
-.btn {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 10px;
+    justify-content: center;
+    gap: 12px;
 }
 
 .login-btn {
-    background: linear-gradient(to right, #667eea, #764ba2);
-    color: white;
+    background: var(--swiggy-orange);
+    color: var(--swiggy-card);
+    margin-top: 20px;
+    box-shadow: 0 8px 25px rgba(252, 128, 25, 0.3);
 }
 
 .login-btn:hover {
+    background: #e57216;
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 12px 35px rgba(252, 128, 25, 0.4);
 }
 
-.signup-btn {
-    background: linear-gradient(to right, #27ae60, #2ecc71);
-    color: white;
+.login-btn:active {
+    transform: translateY(-1px);
 }
 
-.signup-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
-}
-
-/* Divider */
-.divider {
-    display: flex;
-    align-items: center;
-    margin: 30px 0;
-    color: #95a5a6;
-}
-
-.divider::before,
-.divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: #e0e0e0;
-}
-
-.divider span {
-    padding: 0 15px;
-    font-size: 0.9rem;
-}
-
-/* Links */
-.login-link,
+/* Signup Link */
 .signup-link {
-    margin-top: 25px;
-    color: #7f8c8d;
-    font-size: 0.95rem;
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid var(--swiggy-border);
+    color: var(--swiggy-light);
+    font-size: 16px;
 }
 
-.login-link a,
 .signup-link a {
-    color: #667eea;
+    color: var(--swiggy-orange);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
+    margin-left: 8px;
+    transition: all 0.3s;
+    position: relative;
 }
 
-.login-link a:hover,
+.signup-link a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--swiggy-orange);
+    transition: width 0.3s;
+}
+
+.signup-link a:hover::after {
+    width: 100%;
+}
+
 .signup-link a:hover {
+    color: #e57216;
+}
+
+/* Forgot Password */
+.forgot-password {
+    text-align: right;
+    margin-top: -10px;
+}
+
+.forgot-password a {
+    color: var(--swiggy-blue);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.forgot-password a:hover {
+    color: var(--swiggy-orange);
     text-decoration: underline;
 }
 
-/* Footer */
+/* Error Messages */
+.error-message {
+    color: var(--swiggy-red);
+    font-size: 14px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: shake 0.5s;
+}
+
+.error-message i {
+    font-size: 16px;
+}
+
+/* Success Messages */
+.success-message {
+    color: var(--swiggy-green);
+    font-size: 14px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.success-message i {
+    font-size: 16px;
+}
+
+/* Footer for Login Page */
 .login-footer {
-    background: white;
+    background: var(--swiggy-dark);
+    color: white;
     text-align: center;
-    padding: 20px;
-    color: #7f8c8d;
-    font-size: 0.9rem;
+    padding: 25px 20px;
     margin-top: auto;
+}
+
+.login-footer p {
+    color: #b0b0b0;
+    font-size: 14px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .login-box {
-        padding: 30px 25px;
-        margin: 20px;
-    }
-    
     .header {
+        padding: 15px 20px;
         flex-direction: column;
         gap: 15px;
-        padding: 1rem;
     }
     
     .logo {
-        font-size: 1.5rem;
+        font-size: 24px;
+    }
+    
+    .logo i {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .login-box {
+        padding: 40px 30px;
+        margin: 0 20px;
+    }
+    
+    .login-box h1 {
+        font-size: 28px;
+    }
+    
+    .btn {
+        padding: 18px;
+        font-size: 16px;
+    }
+    
+    .input-group input {
+        padding: 18px 20px;
     }
 }
 
 @media (max-width: 480px) {
     .login-box {
-        padding: 25px 20px;
+        padding: 30px 20px;
     }
     
     .login-box h1 {
-        font-size: 1.7rem;
+        font-size: 24px;
+        margin-bottom: 40px;
     }
     
-    .input-group input {
-        padding: 12px 12px 12px 40px;
+    .login-form {
+        gap: 25px;
     }
+    
+    .btn {
+        padding: 16px;
+        font-size: 15px;
+    }
+    
+    .signup-link {
+        font-size: 15px;
+    }
+}
+
+/* Additional Styles for Form Validation */
+.input-group input:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--swiggy-red);
+}
+
+.input-group input:valid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--swiggy-green);
+}
+
+/* Loading State */
+.btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--swiggy-card);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Social Login Divider */
+.social-divider {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+    color: var(--swiggy-light);
+}
+
+.social-divider::before,
+.social-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--swiggy-border);
+}
+
+.social-divider span {
+    padding: 0 20px;
+    font-size: 14px;
+}
+
+/* Social Login Buttons */
+.social-login {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-btn {
+    padding: 16px;
+    border-radius: 10px;
+    border: 2px solid var(--swiggy-border);
+    background: var(--swiggy-card);
+    color: var(--swiggy-dark);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.social-btn:hover {
+    border-color: var(--swiggy-orange);
+    transform: translateY(-2px);
+}
+
+.social-btn.google i {
+    color: #DB4437;
+}
+
+.social-btn.facebook i {
+    color: #4267B2;
 }
