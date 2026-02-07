@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f4f4;
+}
+
+/* Container */
+.account-container {
+    max-width: 420px;
+    margin: 60px auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* Header */
+.account-header {
+    background: #ff6b35;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+.account-header i {
+    font-size: 40px;
+    margin-bottom: 8px;
+}
+
+/* Section */
+.account-section {
+    padding: 18px 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.account-section label {
+    font-size: 13px;
+    color: #777;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.account-section input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+}
+
+/* Editable */
+.editable-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.editable-field button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ff6b35;
+    font-size: 18px;
+}
+
+/* Actions */
+.account-actions {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 25px;
+    text-decoration: none;
+    background: #ff6b35;
+    color: white;
+    font-size: 15px;
+}
+
+.action-btn.logout {
+    background: #e74c3c;
+}

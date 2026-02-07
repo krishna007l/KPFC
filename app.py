@@ -22,7 +22,7 @@ def login():
         p = request.form['password']
         
         try:
-            session['user_name'] = e
+            session['email_name'] = e
             auth.sign_in_with_email_and_password(e, p)
             return redirect('/home') 
         except:
@@ -54,7 +54,7 @@ def signup():
 
 @app.route("/home")
 def home():
-    if 'user_name' not in session:
+    if 'email_name' not in session:
         return redirect('/login')  
     
     total_quantity = 0
@@ -159,5 +159,11 @@ def decrease_qty(pid):
     
     return redirect('/addcard') 
 
+@app.route('/account')
+def account():
+    sn = session.get('email_name')
+    return render_template("account.html",username="Krishna Patel",
+        email=sn)
+    
 if __name__ == '__main__':
     app.run(debug=True)

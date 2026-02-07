@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account | KPFC</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/account.css">
+</head>
+<body>
+
+<div class="account-container">
+
+    <!-- Header -->
+    <div class="account-header">
+        <i class="fas fa-user-circle"></i>
+        <h2>My Account</h2>
+    </div>
+
+    <!-- Name Section -->
+    <div class="account-section">
+        <label>Name</label>
+        <div class="editable-field">
+            <input type="text" id="nameInput" value="{{ username }}" disabled>
+            <button id="editBtn" onclick="editName()">
+                <i class="fas fa-edit"></i>
+            </button>
+            <button id="saveBtn" onclick="saveName()" style="display:none;">
+                <i class="fas fa-check"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Email Section -->
+    <div class="account-section">
+        <label>Email</label>
+        <input type="email" value="{{ email }}" disabled>
+    </div>
+
+    <!-- Actions -->
+    <div class="account-actions">
+        <a href="/addcard" class="action-btn">
+            <i class="fas fa-shopping-cart"></i>
+            My Cart
+        </a>
+
+        <a href="/logout" class="action-btn logout">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </a>
+    </div>
+
+</div>
+
+<!-- JS -->
+<script>
+function editName() {
+    document.getElementById("nameInput").disabled = false;
+    document.getElementById("nameInput").focus();
+    document.getElementById("editBtn").style.display = "none";
+    document.getElementById("saveBtn").style.display = "inline-block";
+}
+
+function saveName() {
+    document.getElementById("nameInput").disabled = true;
+    document.getElementById("editBtn").style.display = "inline-block";
+    document.getElementById("saveBtn").style.display = "none";
+
+    // 🔥 Send to backend later (Flask)
+    // fetch('/update-name', { method: 'POST', body: ... })
+}
+</script>
+
+</body>
+</html>
