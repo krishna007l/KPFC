@@ -22,8 +22,10 @@ def login():
         p = request.form['password']
         
         try:
-            session['email_name'] = e
+            
             auth.sign_in_with_email_and_password(e, p)
+            session['email_name'] = e
+            session.permanent = True
             return redirect('/home') 
         except:
             return redirect("/login")  
@@ -73,6 +75,8 @@ def home():
 
 @app.route('/addcard', methods=['GET', 'POST'])
 def addcard():
+    if 'email_name' not in session:
+        return redirect('/login')
     if request.method == 'POST':
         id = int(request.form['product_id'])
         name = request.form['product_name']
@@ -96,7 +100,7 @@ def addcard():
         
         return redirect('/home') 
     
-   
+
     total_quantity = 0
     total_amount = 0
     
@@ -122,6 +126,8 @@ def remove_item(pid):
 
 @app.route('/bill')
 def bill():
+    if 'email_name' not in session:
+        return redirect('/login')
     current_time = datetime.now()
     total_price = sum(item['price'] * item['qty'] for item in common.productadd)
 
@@ -161,9 +167,16 @@ def decrease_qty(pid):
 
 @app.route('/account')
 def account():
+    if 'email_name' not in session:
+        return redirect('/login')
     sn = session.get('email_name')
     return render_template("account.html",username="Krishna Patel",
         email=sn)
     
+@app.after_request
+def add_header(response):
+    response.headers["Cache-Control"] = "no-store"
+    return response
+
 if __name__ == '__main__':
     app.run(debug=True)
